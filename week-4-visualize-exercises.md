@@ -81,7 +81,7 @@ Experiment.
 
 ``` r
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy), color = 3, size = 4, alpha = 0.5, shape = 2)
+  geom_point(mapping = aes(x = displ, y = hwy), color = 2, size = 4, alpha = 0.5, shape = 2)
 ```
 
 ![](week-4-visualize-exercises_files/figure-commonmark/Adding%20color,%20size,%20alpha%20and%20shape%20to%20hist.-1.png)
@@ -130,7 +130,7 @@ Make a bar chart `class` colored by `class`. Use the help page for
 
 ``` r
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = class), color = 5)
+  geom_bar(mapping = aes(x = class, color = class))
 ```
 
 ![](week-4-visualize-exercises_files/figure-commonmark/Bar%20Chart-1.png)

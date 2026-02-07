@@ -88,7 +88,7 @@ Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.
 ```{r}
 #| label: Adding color, size, alpha and shape to hist.
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy), color = 3, size = 4, alpha = 0.5, shape = 2)
+  geom_point(mapping = aes(x = displ, y = hwy), color = 2, size = 4, alpha = 0.5, shape = 2)
 ```
 
 ## Help Me
@@ -115,7 +115,7 @@ Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to
 ```{r}
 #| label: Bar Chart
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = class), color = 5)
+  geom_bar(mapping = aes(x = class, color = class))
 ```
 
 ## Quiz
