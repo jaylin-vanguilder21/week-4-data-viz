@@ -132,10 +132,13 @@ ggplot(data = mpg) +
 What will this code do?
 
 ```{r}
-ggplot(mpg) + 
-  geom_point(aes(displ, hwy)) +
-  geom_smooth(aes(displ, hwy)) 
-#  ggsave("example.jpg")
+ggplot(mpg, aes(x=displ, y = hwy)) + 
+  geom_point(aes(color = class)) +
+  geom_smooth(color = "black", 
+              se = FALSE,
+              method = "lm") 
+
+# ggsave("example.jpg", width = 6, height = 4)
 ```
 > This code will make it easier to see the pattern in the scatterplot, the specific code to show this is the 'geom_smooth()' code.
 
