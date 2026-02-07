@@ -120,7 +120,11 @@ Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to
 ```{r}
 #| label: Bar Chart
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = class, color = class))
+  geom_bar(mapping = aes(x = class, fill = class)) +
+  guides(fill = "none") +
+  labs(x = "Class of Vehicle",
+       y = "Number of Vehicles in Sample") +
+  theme_bw()
 ```
 
 ## Quiz
