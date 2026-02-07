@@ -42,7 +42,12 @@ Run the code on the slide to make a graph. Pay strict attention to spelling, cap
 ```{r}
 #| label: Creating ggplot graph
 ggplot(data=mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy))
+  geom_point(mapping = aes(x = displ, y = hwy, color = class)) + 
+  labs (x = "Engine Size Displacement",
+        y = "Highwasy Mileage (mpg)",
+        color = "Class of Vehicle",
+        title = "The bigger the engine the less mileage we get on the highway") +
+  theme_light()
 # Don't need to always put 'mapping =' when doing the code, R will understand.
 ```
 
