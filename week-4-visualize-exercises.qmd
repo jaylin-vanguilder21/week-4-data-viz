@@ -1,30 +1,17 @@
 ---
 title: "Visualize Data"
-author: "Your Name"
+author: "Jaylin Van Guilder"
 format: gfm
 execute: 
   echo: true
   eval: true
 ---
 
-
-<!-- If you get the error "Error in list2(na.rm = na.rm, ...) : object 'ffi_list2' not found" do the following in the Console run:  
-
-    remove.packages("rlang")
-
-Then Restart R to be safe. Then run:
-
-    install.packages("rlang")
-
-and again restart R to be safe. That should fix the problem (which is a package dependency issue).   -->
-
-
-
 Try your code again
 ```{r}
-#| label: setup
+#| label: setup1
 #| include: false
-
+library(rlang)
 
 
 ```
@@ -34,10 +21,16 @@ Try your code again
 ## Your Turn 0
 
 Add a setup chunk that loads the tidyverse packages.
+```{r}
+#| label: setup2
+#| include: false
+library(tidyverse)
+
+```
 
 
 ```{r}
-#| label: add-label-0
+#| label: loading data
 head(mpg)
 ```
 
@@ -47,8 +40,10 @@ head(mpg)
 Run the code on the slide to make a graph. Pay strict attention to spelling, capitalization, and parentheses!
 
 ```{r}
-#| label: add-label-1
-#add code
+#| label: Creating ggplot graph
+ggplot(data=mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+# Don't need to always put 'mapping =' when doing the code, R will understand.
 ```
 
 
@@ -57,9 +52,9 @@ Run the code on the slide to make a graph. Pay strict attention to spelling, cap
 Replace this scatterplot with one that draws boxplots. Use the cheatsheet. Try your best guess.
 
 ```{r}
-#| label: add-label-2
+#| label: ggplot boxplot
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = class, y = hwy))
+  geom_boxplot(mapping = aes(x = class, y = hwy))
 ```
 
 
@@ -68,7 +63,9 @@ ggplot(data = mpg) +
 Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y variable.
 
 ```{r}
-#| label: add-label-3
+#| label: ggplot2 Histogram
+ggplot(data = mpg) +
+  geom_histogram(mapping = aes(x = hwy))
 ```
 
 ## Your Turn 4
@@ -76,7 +73,11 @@ Make a histogram of the `hwy` variable from `mpg`. Hint: do not supply a y varia
 Use the help page for `geom_histogram` to make the bins 2 units wide.
 
 ```{r}
-#| label: add-label-4
+#| label: changing bin units
+ggplot(data = mpg) +
+  geom_histogram(binwidth = 2, mapping = aes(x = hwy))
+
+
 ```
 
 
@@ -85,10 +86,9 @@ Use the help page for `geom_histogram` to make the bins 2 units wide.
 Add `color`, `size`, `alpha`, and `shape` aesthetics to your graph. Experiment.  
 
 ```{r}
-#| label: add-label-5
+#| label: Adding color, size, alpha and shape to hist.
 ggplot(data = mpg) +
-  geom_point(mapping = aes(x = displ, 
-                           y = hwy))
+  geom_point(mapping = aes(x = displ, y = hwy), color = 3, size = 4, alpha = 0.5, shape = 2)
 ```
 
 ## Help Me
@@ -97,7 +97,7 @@ What do `facet_grid()` and `facet_wrap()` do?
 (run the code, interpret, convince your group)
 
 ```{r}
-#| label: add-label-help-me
+#| label: Difference between facet grid and wrap
 # Makes a plot that the commands below will modify
 q <- ggplot(mpg) + geom_point(aes(x = displ, y = hwy))
 
@@ -106,14 +106,16 @@ q + facet_grid(drv ~ .)
 q + facet_grid(drv ~ cyl)
 q + facet_wrap(~ class)
 ```
-
+> facet_grid forms a matrix of panels defined by row and column whereas facet_wrap wraps a 1d sequence of panels into 2d making a better use of screen space than facet_grid because most displays are mainly rectangular.
 
 ## Your Turn 6
 
 Make a bar chart `class` colored by `class`. Use the help page for `geom_bar` to choose a "color" aesthetic for class.
 
 ```{r}
-#| label: add-label-6
+#| label: Bar Chart
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class), color = 5)
 ```
 
 ## Quiz
@@ -126,7 +128,7 @@ ggplot(mpg) +
   geom_smooth(aes(displ, hwy)) 
 #  ggsave("example.jpg")
 ```
-
+> This code will make it easier to see the pattern in the scatterplot, the specific code to show this is the 'geom_smooth()' code.
 
 ***
 
