@@ -28,7 +28,12 @@ spelling, capitalization, and parentheses!
 
 ``` r
 ggplot(data=mpg) +
-  geom_point(mapping = aes(x = displ, y = hwy))
+  geom_point(mapping = aes(x = displ, y = hwy, color = class)) + 
+  labs (x = "Engine Size Displacement",
+        y = "Highwasy Mileage (mpg)",
+        color = "Class of Vehicle",
+        title = "The bigger the engine the less mileage we get on the highway") +
+  theme_light()
 ```
 
 ![](week-4-visualize-exercises_files/figure-commonmark/Creating%20ggplot%20graph-1.png)
@@ -130,7 +135,11 @@ Make a bar chart `class` colored by `class`. Use the help page for
 
 ``` r
 ggplot(data = mpg) +
-  geom_bar(mapping = aes(x = class, color = class))
+  geom_bar(mapping = aes(x = class, fill = class)) +
+  guides(fill = "none") +
+  labs(x = "Class of Vehicle",
+       y = "Number of Vehicles in Sample") +
+  theme_bw()
 ```
 
 ![](week-4-visualize-exercises_files/figure-commonmark/Bar%20Chart-1.png)
@@ -140,17 +149,19 @@ ggplot(data = mpg) +
 What will this code do?
 
 ``` r
-ggplot(mpg) + 
-  geom_point(aes(displ, hwy)) +
-  geom_smooth(aes(displ, hwy)) 
+ggplot(mpg, aes(x=displ, y = hwy)) + 
+  geom_point(aes(color = class)) +
+  geom_smooth(color = "black", 
+              se = FALSE,
+              method = "lm") 
 ```
 
-    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+    `geom_smooth()` using formula = 'y ~ x'
 
 ![](week-4-visualize-exercises_files/figure-commonmark/unnamed-chunk-11-1.png)
 
 ``` r
-#  ggsave("example.jpg")
+# ggsave("example.jpg", width = 6, height = 4)
 ```
 
 > This code will make it easier to see the pattern in the scatterplot,
